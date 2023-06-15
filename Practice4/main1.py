@@ -1,0 +1,71 @@
+from class_generator import Generator
+from practice4 import HamsterListBasic, HamsterListExtended, HamsterListBonus
+
+if __name__ == "__main__":
+    g = Generator()
+    hamster = [g.generate_single()[0] for i in range(5)]
+    for i in hamster:
+        print(i)
+    print("Basic:")
+    print("*************************")
+    basic = HamsterListBasic()
+    basic.append(hamster[0])
+    basic.append(hamster[1])
+    basic.append(hamster[2])
+    print(basic.__len__())
+    basic.insert(1, hamster[3])
+    basic.insert(0, hamster[4])
+    print(basic)
+    print(basic.__len__())
+    print(basic.index(hamster[2]))
+    basic.remove(hamster[2])
+    print(basic)
+    print(basic.__len__())
+    print("*************************")
+    print("Extended:")
+    print("*************************")
+    extended = HamsterListExtended()
+    extended.append(hamster[0])
+    extended.append(hamster[1])
+    extended.append(hamster[2])
+    print(extended.__len__())
+    extended.clear()
+    print(extended.__len__())
+    extended.append(hamster[0])
+    extended.append(hamster[1])
+    extended.append(hamster[2])
+    hamster_list_copy = extended.copy()
+    for q in extended:
+        print(q)
+    del extended[1]
+    print("List of hamsters after element removal:")
+    for q in extended:
+        print(q)
+    extended.extend(g.generate_single() for _ in range(1))
+    print("List of hamsters after extension:")
+    for q in extended:
+        print(q)
+    popped_hamster = extended.pop(2)
+    print("Removed item:")
+    print(popped_hamster)
+    extended.reverse()
+    print("Reversed list:")
+    for q in extended:
+        print(q)
+    count = extended.count(extended[0])
+    print(f"Number of occurrences: {count}")
+    print("************************")
+    print("Bonus:")
+    print("************************")
+    bonus = HamsterListBonus()
+    bonus.append(hamster[0])
+    bonus.append(hamster[1])
+    bonus.append(hamster[2])
+    print(bonus)
+    print(bonus.__len__())
+    bonus_copy = bonus.deepcopy()
+    print(bonus_copy)
+    hamster_list_sum = bonus + bonus_copy
+    print(hamster_list_sum)
+    hamster_list_mul = bonus * 3
+    print(">", hamster_list_mul)
